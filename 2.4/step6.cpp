@@ -1,12 +1,17 @@
-#include <string>
-#include <algorithm>
 #include <iostream>
-#include <iterator>
+
+unsigned int strlen(const char *str) {
+    // put your code here
+    int counter=0;
+    while(str[counter]!='\0') {
+        counter = counter + 1;
+    }
+    return counter;
+}
 
 
 int main() {
-    std::string s("фыва");
-    std::cout << s << std::endl;
-    std::reverse(std::begin(s), std::end(s));
-    std::cout << s << std::endl;
+	const char str[] = "hello!";
+	std::cout << strlen(str) << std::endl;
+	return 0;
 }
