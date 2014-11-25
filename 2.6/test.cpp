@@ -6,52 +6,46 @@ using namespace std;
 char *getline() {
     
     int i = 0;
-    int mc_tmp = 2;
-    int mc = 2;
-    char * m = new char[mc];
+    int SIZE_TMP = 1;
+    int SIZE = 1;
 
+    char * m = new char[SIZE];
     char c = '\0';
 
     while(cin.get(c))
     { 
         if (c == '\n') break;
+	cout << endl << "m[" << i << "] ; SIZE=" << SIZE;
 
         m[i] = c;
         i++;
-   
-	cout << endl << "i=" << i << " ; mc =" << mc;
 
-	if (i == mc) {
-             char * mtmp = new char[mc];
+	if (i == SIZE) {
+             char * mtmp = new char[SIZE];
 
-	     for (int j=0; j<mc; j++) {
+	     for (int j=0; j<SIZE; j++) {
 	         mtmp[j] = m[j];
 	     }
-	    
 	     delete [] m;
-	     mc_tmp = mc;
-	     mc = mc * 2;
-	     char * m = new char[mc];
 	     
-	     for (int j=0; j<mc_tmp; j++) {
+	     SIZE_TMP = SIZE;
+	     SIZE = ++SIZE_TMP;
+	     //char * 
+             m = new char[SIZE];
+	     cout << " ; new char[" << SIZE << "]" ;		
+	     
+	     for (int j=0; j<SIZE_TMP; j++) {
 	         m[j] = mtmp[j];
 	     }
-
-	     delete mtmp;
+	     delete [] mtmp;
 	}
     }
 
-//    cout << i << ":" << m << endl;
-
-//   cout << endl << "i=" << i << " ; sizeof array =" << sizeof(m) << " ; sizeof/array="<< sizeof(m)/sizeof(m[0]) << endl;
-//    m[i] = '\n';
-//    cout << m << endl;
-//    delete [] m;
     return m;
 }
 
 int main()
 {
-    cout << getline() << endl;
+    cout << endl << getline() << endl;
     return 0;
 }
