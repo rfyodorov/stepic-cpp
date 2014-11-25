@@ -1,63 +1,52 @@
 #include <iostream>
-#include <cstdlib>
+#include <stdlib.h>
 
 using namespace std;
 
-char getline(char *str);
-int rrand(int range_min, int range_max);
-
-int main() {
-
-    char str[] = "test";
-    //cout << getline(str) << endl;
-    getline(str);
-
-    return 1;
-}
-
-int rrand(int range_min, int range_max) {
-    return rand() % (range_max - range_min + 1) + range_min;
-}
-
-char getline(char *str) {
-    // -----
-    int * m = new int[1000];
-
-    for (unsigned int j = 0; j < 1000; j++) {
-        m[j] = rrand(100, 200);
-    }
-
-    int i = 0;
-    while(i<20) {
-         cout << &m[i] << " - " << m[i] << endl;
-         i++;
-    }
-    delete [] m;
-
-    // ----
+char *getline() {
     
+    int i = 0;
+    int SIZE_TMP = 1;
+    int SIZE = 1;
+
+    char * m = new char[SIZE];
     char c = '\0';
 
-    char * message = new char[10]; // 2 byte * 10 =  20 byte
+    while(cin.get(c))
+    { 
+        if (c == '\n') break;
+	//cout << endl << "m[" << i << "] ; SIZE=" << SIZE;
 
-    i = 0;
-    while(i<5) {
-	 cin.get(); // >> message[i];
-        // cout << "-" << endl;
-	 //*message;// << " - " << (char)message[i] << endl;
-         i++;
+        m[i] = c;
+        i++;
+
+	if (i == SIZE) {
+             char * mtmp = new char[SIZE];
+
+	     for (int j=0; j<SIZE; j++) {
+	         mtmp[j] = m[j];
+	     }
+	     delete [] m;
+	     
+	     SIZE_TMP = SIZE;
+	     SIZE = ++SIZE_TMP;
+	     //char * 
+             m = new char[SIZE];
+	     //cout << " ; new char[" << SIZE << "]" ;		
+	     
+	     for (int j=0; j<SIZE_TMP; j++) {
+	         m[j] = mtmp[j];
+	     }
+	     delete [] mtmp;
+	}
     }
+    m[i]='\0';
 
-   /* while (cin.get(c)) {
-        message[i] = char cin.get(c);
-	i++;
-    }*/
-
-//  cout << message[0] << endl;
-
-    delete [] message;
-
-    return *str;
-
+    return m;
 }
 
+int main()
+{
+    cout << endl << getline() << endl;
+    return 0;
+}
