@@ -14,13 +14,14 @@ void swap_min(int **mt, int m, int n) {
    for (int i=0; i!=m; ++i) {
        for (int j=0; j!=n; ++j) {
            if (mt[i][j] < min) {
+	       min = mt[i][j];
                min_i = i;
                min_j = j;
            }
        }
    }
  
-   // cout << "Min = m[" << min_i << "][" << min_j << "] = " << mt[min_i][min_j] << endl;
+   //cout << "Min = m[" << min_i << "][" << min_j << "] = " << mt[min_i][min_j] << endl;
 
    for (int j=0; j!=n; ++j) {
 	tmp_j = mt[0][j];
@@ -58,20 +59,19 @@ void print_array2d(int ** Arr, size_t a, size_t b) {
 
 int main() {
 
-    int a = 1;
+    int a = 3;
     int b = 3;
 
     int ** myarray = create_array2d(a, b);
 
-    unsigned rand_value = 11;
-    srand(rand_value);
+    //unsigned rand_value = 11;
+    //srand(rand_value);
  
-//    myarray = {{2, 3, 5}, {7, 0, 3}, {4, 8, 6}};
 
-    myarray[0][0] = 2;
+    myarray[0][0] = 9;
     myarray[0][1] = 3;
     myarray[0][2] = 5;
-/*
+
     myarray[1][0] = 7;
     myarray[1][1] = 0;
     myarray[1][2] = 3;
@@ -79,7 +79,7 @@ int main() {
     myarray[2][0] = 4;
     myarray[2][1] = 8;
     myarray[2][2] = 6;
-*/
+
 
 /*    for (size_t i=0; i!=3; ++i) {
         for (size_t j=0; j!=3; ++j) {
